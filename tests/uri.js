@@ -36,6 +36,38 @@ util.forEachApply([
     };
 });
 
+
+[
+    ""
+    , "/"
+    , "/jedi"
+    , "/jedi/"
+    , "http://www.narwhaljs.org"
+    , "http://www.narwhaljs.org/"
+    , "http://www.narwhaljs.org/jedi"
+    , "http://www.narwhaljs.org/jedi/"
+    , "http://www.narwhaljs.org/jedi?jedi=jade"
+    , "http://www.narwhaljs.org/jedi/?sith=dooku"
+].forEach(function (item) {
+              exports["testFormatting: " + item] = function () {
+                  assert.isEqual(item, uri.format(new URI(item)));
+              };
+          });
+
+util.forEachApply(
+    [
+        ["", ""]
+        , ["jedi/../sith", "sith"]
+        , ["http://jedi.net/hii/../hoo", "http://jedi.net/hoo"]
+        , ["http://jedi.net/hii/../hoo?one=1", "http://jedi.net/hoo?one=1"]
+        , ["http://jedi.net/hii/../hoo/?one=1", "http://jedi.net/hoo/?one=1"]
+    ],
+    function (url, expected) {
+        exports["testFormattingRelative: " + url] = function () {
+            assert.isEqual(expected, uri.format(new URI(url)));
+        };
+    });
+
 if (require.main == module.id)
     require("os").exit(require("test/runner").run(exports));
 

@@ -11,19 +11,19 @@ exports.testConstructor = function() {
     assert.isEqual("www.narwhaljs.org", uri.authority);
     assert.isEqual("/blog/categories", uri.path);
     assert.isEqual("id=news", uri.query);
-    assert.isNull(uri.fragment);
-}
+    assert.isEqual("", uri.anchor);
+};
 
 exports.testToString = function() {
     var uri = new URI("http://www.narwhaljs.org/blog/categories?id=news");
     assert.isEqual("http://www.narwhaljs.org/blog/categories?id=news", uri.toString());
-}
+};
 
 util.forEachApply([
     ["/foo/bar/baz", "/foo/bar/quux", "quux"],
     ["/foo/bar/baz", "/foo/bar/quux/asdf", "quux/asdf"],
-    ["/foo/bar/baz", "/foo/bar/quux/baz", "quux/baz"],
-    ["/foo/bar/baz", "/foo/quux/baz", "../quux/baz"]
+    ["/foo/bar/baz", "/foo/bar/quux/baz", "quux/"],
+    ["/foo/bar/baz", "/foo/quux/baz", "../quux/"]
 ], function (from, to, expected) {
     exports[
         'testRelative ' +

@@ -1,6 +1,6 @@
 var QueryString = require("querystring");
 var assert = require("test/assert");
-
+var util = require("util");
 
 exports.testUnescape = function() {
     assert.isEqual("fo<o>bar", QueryString.unescape("fo%3Co%3Ebar"));
@@ -56,20 +56,43 @@ var qsWeirdObjects = [ //{
     [ {d:new Date()}, "d=", {"d":""} ],
     [ {d:Date}, "d=", {"d":""} ],
     [ {f:new Boolean(false), t:new Boolean(true)}, "f=0&t=1", {"f":0, "t":1} ],
-    [ {f:false, t:true}, "f=0&t=1", {"f":0, "t":1} ],
+    [ {f:false, t:true}, "f=0&t=1", {"f":0, "t":1} ]
 ]; //}
+
+
+util.forEachApply(
+    [
+        [{}, "" ],
+        [{a:[1, 2]}, "a=1&a=2" ],
+        [{a:[1, 2, 3], b: 3}, "a=1&a=2&a=3&b=3" ]
+    ],
+    function (obj, str) {
+        exports["testDuplicateParse: " + str] = function () {
+            assert.isSame(obj, QueryString.parseQuery(str));
+        };
+        exports["testDuplicateStringifyParse: " + str] = function () {
+            assert.isSame(obj, QueryString.parse(QueryString.stringify(obj)));
+        };
+    });
+
 
 exports.testParseQuery = function() {
     qsTestCases.forEach(function (testCase) {
         assert.isSame(testCase[2], QueryString.parseQuery(testCase[0]));
     });
     qsColonTestCases.forEach(function (testCase) {
-        assert.isSame(testCase[2], QueryString.parseQuery(testCase[0], ";", ":"))
+        assert.isSame(testCase[2], QueryString.parseQuery(testCase[0], ";", ":"));
     });
     qsWeirdObjects.forEach(function (testCase) {
         assert.isSame(testCase[2], QueryString.parseQuery(testCase[1]));
     });
-}
+};
+
+exports.testStringifyQuery = function () {
+    qsWeirdObjects.forEach(function (testCase) {
+        assert.isSame(testCase[1], QueryString.stringify(testCase[2]));
+    });
+};
 
 /*
 exports.testToQueryString = function () {

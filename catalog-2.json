@@ -461,6 +461,12 @@
             "jars": [
                 "jars/simple-4.1.10.jar"
             ],
+            "lean": {
+                "include": [
+                    "lib/**/*",
+                    "package.json"
+                ]
+            },
             "version": [
                 "0",
                 "2",
@@ -492,7 +498,8 @@
             },
             "email": "george.moschovitis@gmail.com",
             "dependencies": [
-                "jack"
+                "narwhal-lib",
+                "jack-lib"
             ],
             "contributors": [
                 {
@@ -504,7 +511,7 @@
                 }
             ],
             "lib": "lib",
-            "main": "examples/simple/jackconfig",
+            "main": "examples/config.js",
             "lean": {
                 "include": [
                     "lib/**/*",
@@ -879,38 +886,6 @@
             "dependencies": [],
             "version": []
         },
-        "template": {
-            "name": "template",
-            "description": "A simple templating engine",
-            "keywords": [
-                "template",
-                "text",
-                "json"
-            ],
-            "author": {
-                "name": "George Moschovitis"
-            },
-            "email": "george.moschovitis@gmail.com",
-            "dependencies": [],
-            "lib": "lib",
-            "descriptorUrl": "http://github.com/gmosx/template/raw/master/package.json",
-            "packageUrl": "http://github.com/gmosx/template/zipball/master",
-            "packageArchive": "zip",
-            "source": {
-                "type": "github",
-                "user": "gmosx",
-                "packageName": "template",
-                "descriptorUrl": "http://github.com/gmosx/template/raw/master/package.json",
-                "url": "http://github.com/gmosx/template/zipball/master",
-                "archive": "zip"
-            },
-            "contributors": [
-                {
-                    "name": "George Moschovitis"
-                }
-            ],
-            "version": []
-        },
         "markdown": {
             "name": "markdown",
             "description": "A port of markdown to JavaScript",
@@ -964,7 +939,8 @@
                 "cycle",
                 "nonblank",
                 "uncomment",
-                "dog"
+                "dog",
+                "samp"
             ],
             "author": {
                 "name": "Kris Kowal",
@@ -1539,7 +1515,8 @@
             "email": "nathan.stott@whiteboard-it.com",
             "dependencies": [
                 "jack",
-                "ejs"
+                "ejs",
+                "observable"
             ],
             "lib": "lib",
             "descriptorUrl": "http://github.com/nrstott/bogart/raw/master/package.json",
@@ -1662,6 +1639,48 @@
             ],
             "version": []
         },
+        "mongodb": {
+            "name": "mongodb",
+            "description": "API to access MongoDB, a schema-free database of JSON documents",
+            "keywords": [
+                "mongo",
+                "database",
+                "document",
+                "mongodb",
+                "db"
+            ],
+            "author": {
+                "name": "Sergi Mansilla",
+                "url": "http://www.sergimansilla.com",
+                "email": "sergi.mansilla@gmail.com"
+            },
+            "jars": [
+                "mongo-1.2.jar"
+            ],
+            "email": "sergi.mansilla@gmail.com",
+            "dependencies": [],
+            "lib": "lib",
+            "descriptorUrl": "http://github.com/sergi/narwhal-mongodb/raw/master/package.json",
+            "packageUrl": "http://github.com/sergi/narwhal-mongodb/zipball/master",
+            "packageArchive": "zip",
+            "source": {
+                "type": "github",
+                "user": "sergi",
+                "name": "narwhal-mongodb",
+                "packageName": "mongodb",
+                "descriptorUrl": "http://github.com/sergi/narwhal-mongodb/raw/master/package.json",
+                "url": "http://github.com/sergi/narwhal-mongodb/zipball/master",
+                "archive": "zip"
+            },
+            "contributors": [
+                {
+                    "name": "Sergi Mansilla",
+                    "url": "http://www.sergimansilla.com",
+                    "email": "sergi.mansilla@gmail.com"
+                }
+            ],
+            "version": []
+        },
         "underscore": {
             "name": "underscore",
             "description": "Functional programming aid for JavaScript. Works well with jQuery.",
@@ -1709,18 +1728,40 @@
         "silk": {
             "name": "silk",
             "description": "A comprehensive set of 16x16px icons.",
-            "license": "CC-BY-2.5 (http://creativecommons.org/licenses/by/2.5/)",
-            "url": "http://www.famfamfam.com/lab/icons/silk/",
+            "version": [
+                "1",
+                "3"
+            ],
+            "licenses": [
+                {
+                    "type": "CC-BY-2.5",
+                    "url": "http://creativecommons.org/licenses/by/2.5/"
+                },
+                {
+                    "type": "CC-BY-3.0",
+                    "url": "http://creativecommons.org/licenses/by/3.0/"
+                }
+            ],
+            "homepage": "http://www.famfamfam.com/lab/icons/silk/",
             "keywords": [
                 "media",
                 "icons",
                 "silk",
                 "famfamfam"
             ],
-            "author": {
-                "name": "Mark James",
-                "email": "mjames@gmail.com"
-            },
+            "contributors": [
+                {
+                    "name": "Mark James",
+                    "email": "mjames@gmail.com"
+                }
+            ],
+            "maintainers": [
+                {
+                    "name": "Kris Kowal",
+                    "email": "kris@cixar.com",
+                    "web": "http://askawizard.blogspot.com"
+                }
+            ],
             "descriptorUrl": "http://github.com/kriskowal/silk/raw/master/package.json",
             "packageUrl": "http://github.com/kriskowal/silk/zipball/master",
             "packageArchive": "zip",
@@ -1732,14 +1773,7 @@
                 "url": "http://github.com/kriskowal/silk/zipball/master",
                 "archive": "zip"
             },
-            "contributors": [
-                {
-                    "name": "Mark James",
-                    "email": "mjames@gmail.com"
-                }
-            ],
-            "dependencies": [],
-            "version": []
+            "dependencies": []
         },
         "objective-j": {
             "name": "objective-j",
@@ -1784,12 +1818,12 @@
                     "url": "http://contributors.cappuccino.org/"
                 }
             ],
-            "cappuccino-revision": "e7199780799d27389752a038fc55c3211e740ead",
-            "cappuccino-timestamp": 1270590371528,
+            "cappuccino-revision": "b2fdc89e1d25aba355fbcbd6efab7c6c59a03f19",
+            "cappuccino-timestamp": 1270877123439,
             "version": [
                 "0",
                 "8",
-                "0"
+                "1"
             ],
             "descriptorUrl": "http://github.com/280north/objective-j-package/raw/master/package.json",
             "packageUrl": "http://cappuccino.org/packages/objective-j",
@@ -1848,12 +1882,12 @@
                     "url": "http://contributors.cappuccino.org/"
                 }
             ],
-            "cappuccino-revision": "e7199780799d27389752a038fc55c3211e740ead",
-            "cappuccino-timestamp": 1270590371812,
+            "cappuccino-revision": "b2fdc89e1d25aba355fbcbd6efab7c6c59a03f19",
+            "cappuccino-timestamp": 1270877123979,
             "version": [
                 "0",
                 "8",
-                "0"
+                "1"
             ],
             "descriptorUrl": "http://github.com/280north/cappuccino-package/raw/master/package.json",
             "packageUrl": "http://cappuccino.org/packages/cappuccino",
@@ -2113,6 +2147,10 @@
                 "schema",
                 "query"
             ],
+            "engines": {
+                "node": ">=0.1.30",
+                "rhino": true
+            },
             "githubName": "commonjs-utils",
             "type": "zip",
             "location": "http://github.com/kriszyp/commonjs-utils/zipball/master",
@@ -2519,6 +2557,41 @@
                 "ometajs"
             ]
         },
+        "bem-tools": {
+            "name": "bem-tools",
+            "author": {
+                "name": "Sergey Berezhnoy",
+                "url": "http://github.com/veged/"
+            },
+            "description": "BEM Tools",
+            "keywords": [
+                "tools",
+                "bem"
+            ],
+            "version": [
+                "0",
+                "0",
+                "1"
+            ],
+            "descriptorUrl": "http://github.com/veged/bem-tools/raw/master/package.json",
+            "packageUrl": "http://github.com/veged/bem-tools/zipball/master",
+            "packageArchive": "zip",
+            "source": {
+                "type": "github",
+                "user": "veged",
+                "packageName": "bem-tools",
+                "descriptorUrl": "http://github.com/veged/bem-tools/raw/master/package.json",
+                "url": "http://github.com/veged/bem-tools/zipball/master",
+                "archive": "zip"
+            },
+            "contributors": [
+                {
+                    "name": "Sergey Berezhnoy",
+                    "url": "http://github.com/veged/"
+                }
+            ],
+            "dependencies": []
+        },
         "closure-compiler": {
             "name": "closure-compiler",
             "description": "Closure Compiler",
@@ -2577,16 +2650,17 @@
             "description": "Haml ported to server-side Javascript. This is a traditional server-side templating language.",
             "keywords": [
                 "haml",
-                "template",
-                "nodejs"
+                "template"
             ],
+            "main": "./lib/haml",
             "author": {
-                "name": "Tim Caswell"
+                "name": "Tim Caswell",
+                "email": "tim@creationix.com"
             },
             "version": [
                 "0",
                 "2",
-                "2"
+                "5"
             ],
             "descriptorUrl": "http://github.com/creationix/haml-js/raw/master/package.json",
             "packageUrl": "http://github.com/creationix/haml-js/zipball/master",
@@ -2601,7 +2675,8 @@
             },
             "contributors": [
                 {
-                    "name": "Tim Caswell"
+                    "name": "Tim Caswell",
+                    "email": "tim@creationix.com"
                 }
             ],
             "dependencies": []
@@ -2827,8 +2902,60 @@
             },
             "version": []
         },
-        "zipjs": {
-            "name": "zipjs",
+        "wu": {
+            "name": "wu",
+            "description": "A lazy, functional Javascript library that ain't nuthin' ta f*ck wit.",
+            "author": {
+                "name": "Nick Fitzgerald",
+                "url": "http://fitzgeraldnick.com",
+                "email": "fitzgen@gmail.com"
+            },
+            "bugs": "http://github.com/fitzgen/wu.js/issues",
+            "licenses": [
+                {
+                    "type": "MIT",
+                    "url": "http://www.opensource.org/licenses/mit-license.php "
+                }
+            ],
+            "repositories": [
+                {
+                    "type": "git",
+                    "url": "git://github.com/fitzgen/wu.js.git"
+                }
+            ],
+            "url": "http://fitzgen.github.com/wu.js",
+            "version": [
+                "0",
+                "1",
+                "3"
+            ],
+            "directories": {
+                "lib": "./lib"
+            },
+            "main": "./lib/wu",
+            "descriptorUrl": "http://github.com/fitzgen/wu.js/raw/master/package.json",
+            "packageUrl": "http://github.com/fitzgen/wu.js/zipball/master",
+            "packageArchive": "zip",
+            "source": {
+                "type": "github",
+                "user": "fitzgen",
+                "name": "wu.js",
+                "packageName": "wu",
+                "descriptorUrl": "http://github.com/fitzgen/wu.js/raw/master/package.json",
+                "url": "http://github.com/fitzgen/wu.js/zipball/master",
+                "archive": "zip"
+            },
+            "contributors": [
+                {
+                    "name": "Nick Fitzgerald",
+                    "url": "http://fitzgeraldnick.com",
+                    "email": "fitzgen@gmail.com"
+                }
+            ],
+            "dependencies": []
+        },
+        "zip": {
+            "name": "zip",
             "author": {
                 "name": "Tom Robinson",
                 "url": "http://tlrobinson.net/"
@@ -2848,7 +2975,8 @@
             "source": {
                 "type": "github",
                 "user": "tlrobinson",
-                "packageName": "zipjs",
+                "name": "zipjs",
+                "packageName": "zip",
                 "descriptorUrl": "http://github.com/tlrobinson/zipjs/raw/master/package.json",
                 "url": "http://github.com/tlrobinson/zipjs/zipball/master",
                 "archive": "zip"
@@ -2859,6 +2987,132 @@
                     "url": "http://tlrobinson.net/"
                 }
             ],
+            "dependencies": []
+        },
+        "jison": {
+            "name": "jison",
+            "author": {
+                "name": "Zach Carter"
+            },
+            "email": "zach@carter.name",
+            "keywords": [
+                "jison",
+                "parser",
+                "lexer",
+                "compiler"
+            ],
+            "githubName": "jison",
+            "type": "zip",
+            "location": "http://github.com/zaach/jison/zipball/master",
+            "descriptorUrl": "http://github.com/zaach/jison/raw/master/package.json",
+            "packageUrl": "http://github.com/zaach/jison/zipball/master",
+            "packageArchive": "zip",
+            "source": {
+                "type": "github",
+                "user": "zaach",
+                "packageName": "jison",
+                "descriptorUrl": "http://github.com/zaach/jison/raw/master/package.json",
+                "url": "http://github.com/zaach/jison/zipball/master",
+                "archive": "zip"
+            },
+            "contributors": [
+                {
+                    "name": "Zach Carter"
+                }
+            ],
+            "dependencies": [],
+            "version": []
+        },
+        "jslint": {
+            "name": "jslint",
+            "description": "CommonJS based command-line front-end for JSLint with support for Unix pipes and configurable through command line options.",
+            "version": [
+                "0",
+                "2",
+                "1"
+            ],
+            "licenses": [
+                {
+                    "type": "new BSD",
+                    "url": "http://www.bramstein.com/licenses/BSD.txt"
+                }
+            ],
+            "maintainers": [
+                {
+                    "name": "Bram Stein",
+                    "web": "http://www.bramstein.com/",
+                    "email": "b.l.stein@gmail.com"
+                }
+            ],
+            "repositories": [
+                {
+                    "type": "git",
+                    "url": "http://github.com/bramstein/jslint"
+                }
+            ],
+            "dependencies": [
+                "jslint-core"
+            ],
+            "directories": {
+                "lib": "lib",
+                "bin": "bin"
+            },
+            "descriptorUrl": "http://github.com/bramstein/jslint/raw/master/package.json",
+            "packageUrl": "http://github.com/bramstein/jslint/zipball/master",
+            "packageArchive": "zip",
+            "source": {
+                "type": "github",
+                "user": "bramstein",
+                "packageName": "jslint",
+                "descriptorUrl": "http://github.com/bramstein/jslint/raw/master/package.json",
+                "url": "http://github.com/bramstein/jslint/zipball/master",
+                "archive": "zip"
+            },
+            "contributors": []
+        },
+        "jslint-core": {
+            "name": "jslint-core",
+            "maintainers": [
+                {
+                    "name": "Douglas Crockford",
+                    "web": "http://www.crockford.com/"
+                },
+                {
+                    "name": "Bram Stein",
+                    "web": "http://www.bramstein.com/",
+                    "email": "b.l.stein@gmail.com"
+                }
+            ],
+            "licenses": [
+                {
+                    "type": "MIT with \"Good not Evil\" clause.",
+                    "url": "http://www.jslint.com/fulljslint.js"
+                }
+            ],
+            "homepage": "http://jslint.com/",
+            "description": "The JavaScript Code Quality Tool",
+            "keywords": [
+                "JavaScript",
+                "lint",
+                "jslint",
+                "jslint-core",
+                "fulljslint"
+            ],
+            "version": [
+                "2010-04-06"
+            ],
+            "descriptorUrl": "http://github.com/bramstein/jslint-core/raw/master/package.json",
+            "packageUrl": "http://github.com/bramstein/jslint-core/zipball/master",
+            "packageArchive": "zip",
+            "source": {
+                "type": "github",
+                "user": "bramstein",
+                "packageName": "jslint-core",
+                "descriptorUrl": "http://github.com/bramstein/jslint-core/raw/master/package.json",
+                "url": "http://github.com/bramstein/jslint-core/zipball/master",
+                "archive": "zip"
+            },
+            "contributors": [],
             "dependencies": []
         }
     }

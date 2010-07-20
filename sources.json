@@ -93,10 +93,6 @@
             "user": "kriskowal",
             "descriptor": {}
         },
-        "template": {
-            "type": "github",
-            "user": "gmosx"
-        },
         "markdown": {
             "type": "github",
             "user": "gmosx"
@@ -177,6 +173,11 @@
             "type": "github",
             "user": "nrstott",
             "name": "narwhal-couchdb"
+        },
+        "mongodb": {
+            "type": "github",
+            "user": "sergi",
+            "name": "narwhal-mongodb"
         },
         "underscore": {
             "type": "github",
@@ -277,6 +278,10 @@
             "user": "veged",
             "ref": "narwhal"
         },
+        "bem-tools" : {
+            "type": "github",
+            "user": "veged",
+        },
         "closure-compiler": {
             "type": "github",
             "user": "280north",
@@ -330,9 +335,27 @@
             "user": "tlrobinson",
             "name": "commonjs-sqlite-jdbc"
         },
-        "zipjs": {
+        "wu": {
             "type": "github",
-            "user": "tlrobinson"
+            "user": "fitzgen",
+            "name": "wu.js"
+        },
+        "zip": {
+            "type": "github",
+            "user": "tlrobinson",
+            "name": "zipjs"
+        },
+        "jison": {
+            "type": "github",
+            "user": "zaach"
+        },
+        "jslint": {
+            "type": "github",
+            "user": "bramstein"
+        },
+        "jslint-core": {
+            "type": "github",
+            "user": "bramstein"
         }
     }
 }

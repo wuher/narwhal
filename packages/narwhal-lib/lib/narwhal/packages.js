@@ -14,7 +14,6 @@ exports.resourceIfExists = function (path) {
         if (resource.exists())
             return resource;
     }
-    return undefined;
 };
 
 exports.resource = function (path) {
@@ -59,7 +58,7 @@ exports.load = function (prefixes, options) {
 
     var catalog = {},
         usingCatalog = require.loader.usingCatalog || {};
-
+    
     // depth first search of the packages tree and roots
     var root = exports.read(prefixes, catalog, usingCatalog, options);
 
@@ -85,7 +84,7 @@ exports.load = function (prefixes, options) {
     // engine-specific synthesis
     if (packagesEngine)
         packagesEngine.synthesize(analysis);
-
+    
     // update usingCatalog in loader
     require.loader.usingCatalog = usingCatalog;
 
@@ -147,10 +146,10 @@ exports.read = function read(prefixes, catalog, usingCatalog, options) {
                 packageDirectory = item;
                 name = packageDirectory.basename();
             }
-
+            
             // check for cyclic symbolic linkage
             var canonicalPackageDirectory = packageDirectory.canonical();
-            if (Object.prototype.hasOwnProperty.call(visitedPackages, canonicalPackageDirectory))
+            if (Object.prototype.hasOwnProperty.call(visitedPackages, canonicalPackageDirectory)) 
                 continue;
             visitedPackages[canonicalPackageDirectory] = true;
 
@@ -168,6 +167,7 @@ exports.read = function read(prefixes, catalog, usingCatalog, options) {
             try {
                 var packageDatumJson = packageDirectory.join('package.json').read({"charset": "UTF-8"});
                 packageDatum = JSON.parse(packageDatumJson || '{}');
+                
                 // look for local, user overrides
                 var local = packageDirectory.join('local.json');
                 if (local.isFile()) {
@@ -184,14 +184,14 @@ exports.read = function read(prefixes, catalog, usingCatalog, options) {
                 if (localOverlay.isFile()) {
                     UTIL.deepUpdate(packageDatum, JSON.parse(localOverlay.read().toString()));
                 }
-
+                
                 // If package declares it is a "using" package we do not load it into the system catalog.
                 // This feature is important as using packages do not namespace their modules in a way
                 // that is compatible with system packages.
                 if(UTIL.has(packageDatum, "type") && packageDatum.type=="using") {
                     continue;
                 }
-
+                
                 // scan the <package>/using directory for "using" packages
                 // TODO: This should run only *once* for the SEA package as "using" packages
                 //       should only be declared in <sea>/using
@@ -199,7 +199,7 @@ exports.read = function read(prefixes, catalog, usingCatalog, options) {
                 //       in a reliable and consistent fashion. The SEA environment variable could?
                 exports.readUsing(options, usingCatalog, packageDirectory.join("using"));
 
-                // rewrite the package name to using/<name>/package.json if it is a using package
+                // rewrite the package name to using/<name>/package.json if it is a using package                    
                 if(dependencyInfo) {
                     name = dependencyInfo.name;
                 } else {
@@ -228,7 +228,7 @@ exports.read = function read(prefixes, catalog, usingCatalog, options) {
                         }
                     });
                 }
-
+                
                 // normalize authors
                 if (packageDatum.author)
                     packageDatum.author = new exports.Author(packageDatum.author);
@@ -385,7 +385,7 @@ exports.sortedPackages = function (graph) {
 
 /*** analyze
     constructs prioritized top-level module paths
-    based on the given sorted package array.
+    based on the given sorted package array.    
 */
 exports.analyze = function analyze(analysis, catalog) {
     analysis.libPaths = [];
@@ -411,12 +411,13 @@ exports.analyze = function analyze(analysis, catalog) {
             var engineLibs = [];
             if (info.engines)
                 engines = info.engines;
+                
             if(!SYSTEM.engines)
                 throw "No SYSTEM.engines set";
 
             SYSTEM.engines.forEach(function (engine) {
                 var engineDir = info.directory.join(engines, engine, 'lib');
-                if (engineDir.isDirectory())
+                if (engineDir.isDirectory()) 
                     engineLibs.push(engineDir);
             });
 
@@ -443,7 +444,7 @@ exports.analyze = function analyze(analysis, catalog) {
             }
 
         }
-
+        
         // add any preload librarys to analysis
         if (info.preload) {
             if (typeof info.preload == "string")
@@ -451,7 +452,7 @@ exports.analyze = function analyze(analysis, catalog) {
             analysis.preloadModules.unshift.apply(analysis.preloadModules, info.preload);
         }
     });
-
+    
 };
 
 /*** synthesize
@@ -468,7 +469,7 @@ exports.addJsPaths = function addJsPaths(jsPaths) {
     // add package paths to the loader
     if (require.paths)
         require.paths.splice.apply(
-            require.paths,
+            require.paths, 
             [0, require.paths.length].concat(jsPaths)
         );
 };
@@ -508,7 +509,7 @@ exports.readUsing = function(options, usingCatalog, basePath, subPath) {
     if(!path.isDirectory()) {
         return;
     }
-
+        
     // when a package.json file is encountered we have arrived at a package.
     // based on the path we can determine the package name (top-level id)
     if(path.join("package.json").exists()) {
@@ -521,11 +522,11 @@ exports.readUsing = function(options, usingCatalog, basePath, subPath) {
         if (localOverlay.isFile()) {
             UTIL.deepUpdate(packageDatum, JSON.parse(localOverlay.read().toString()));
         }
-
+        
         var id = subPath.valueOf().replace(/\\/g, "/");	// windows compatibility
-
+        
         exports.updateUsingCatalog(options, usingCatalog, path, id, packageDatum);
-
+        
         // once a package is encountered we do not traverse deeper
     } else {
         // we did not find a package - traverse the path deeper
@@ -628,7 +629,7 @@ exports.Author.prototype.toString = function () {
 exports.Author.regexp = new RegExp(
     "(?:" +
         "([^\\(<]*)" +
-        " ?" +
+        " ?" + 
     ")?" +
     "(?:" +
         "\\(" +

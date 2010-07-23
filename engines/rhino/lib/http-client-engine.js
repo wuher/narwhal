@@ -1,6 +1,7 @@
 
 // -- isaacs Isaac Schlueter
 // -- kriskowal Kris Kowal Copyright (C) 2009-2010 MIT License
+// -- wuher Janne Kuuskeri Copyright (C) 2010 MIT License
 
 var IO = require("io").IO,
     UTIL = require("util");

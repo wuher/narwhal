@@ -5,6 +5,7 @@
 // -- fitzgen Nick Fitzgerald
 // -- nevilleburnell Neville Burnell
 // -- cadorn Christoph Dorn
+// -- wuher Janne Kuuskeri Copyright (C) 2010 MIT License
 
 // a decorator for functions that curry "polymorphically",
 // that is, that return a function that can be tested

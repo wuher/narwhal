@@ -1,6 +1,7 @@
 
 // -- kriskowal Kris Kowal Copyright (C) 2009-2010 MIT License
 // gmosx, George Moschovitis
+// -- wuher Janne Kuuskeri Copyright (C) 2010 MIT License
 
 // Based on: http://data.iana.org/TLD/tlds-alpha-by-domain.txt
 var TLDS = exports.TLDS = [
